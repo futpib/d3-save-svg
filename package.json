@@ -17,16 +17,26 @@
   },
   "scripts": {
     "pretest": "mkdir -p build && node -e 'process.stdout.write(\"var version = \\\"\" + require(\"./package.json\").version + \"\\\"; export * from \\\"../index\\\"; export {version};\");' > build/bundle.js && rollup -f umd -u d3-save-svg -n d3_save_svg -o build/d3-save-svg.js -- build/bundle.js",
-    "test": "faucet `find test -name '*-test.js'`",
+    "test": "xo && faucet `find test -name '*-test.js'`",
     "prepublish": "npm run test && uglifyjs build/d3-save-svg.js -c -m -o build/d3-save-svg.min.js && rm -f build/d3-save-svg.zip && zip -j build/d3-save-svg.zip -- LICENSE README.md build/d3-save-svg.js build/d3-save-svg.min.js"
   },
   "devDependencies": {
+    "eslint-config-xo-overrides": "^1.4.0",
     "faucet": "0.0",
     "jsdom": "^7.1.0",
     "rollup": "0.20.5",
     "tape": "4",
     "uglify-js": "2",
     "w3c-blob": "0.0.1",
-    "xmlserializer": "^0.3.3"
+    "xmlserializer": "^0.3.3",
+    "xo": "^0.24.0"
+  },
+  "xo": {
+    "extends": [
+      "eslint-config-xo-overrides"
+    ],
+    "rules": {
+      "unicorn/filename-case": "off"
+    }
   }
 }

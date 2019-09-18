@@ -1,4 +1,4 @@
 export {
-  save,
-  embedRasterImages,
+	save,
+	embedRasterImages,
 } from './src/d3-save-svg';
